@@ -10,11 +10,17 @@ import plotly.express as px
 import streamlit as st
 
 
-# Autenticação via chave JSON
-SERVICE_ACCOUNT = 'feyo1984@developer.gserviceaccount.com'
-KEY_PATH = 'ee-feyo1984-0171f94bd405.json'
-credentials = ee.ServiceAccountCredentials(SERVICE_ACCOUNT, KEY_PATH)
+
+
+# Autenticação via Secrets do Streamlit Cloud
+service_account_info = json.loads(os.environ["SERVICE_ACCOUNT_JSON"])
+credentials = ee.ServiceAccountCredentials(
+    service_account_info["client_email"],
+    key_data=json.dumps(service_account_info)
+)
 ee.Initialize(credentials)
+
+
 
 
 
