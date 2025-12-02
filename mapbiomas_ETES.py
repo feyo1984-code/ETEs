@@ -25,7 +25,7 @@ service_account_info = {
     "private_key": gee["private_key"],
     "client_email": gee["client_email"],
     "client_id": gee["client_id"],
-   ["token_uri"],
+    "token_uri": gee["token_uri"],
     "auth_provider_x509_cert_url": gee["auth_provider_x509_cert_url"],
     "client_x509_cert_url": gee["client_x509_cert_url"],
     "universe_domain": gee["universe_domain"],
