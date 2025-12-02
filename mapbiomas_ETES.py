@@ -96,24 +96,7 @@ Este app permite **visualizar e analisar** a classificação do MapBiomas para u
 3. Clique em **Executar Análise** para recortar a imagem e calcular a **área por classe**.
 """)
 
-# =========================
-# Inicialização do EE (robusta)
-# =========================
-def init_ee():
-    try:
-        ee.Initialize()
-        st.success("✅ Earth Engine inicializado.")
-    except Exception:
-        st.info("Realizando autenticação do Earth Engine…")
-        try:
-            ee.Authenticate()
-            ee.Initialize()
-            st.success("✅ Earth Engine autenticado e inicializado.")
-        except Exception as e:
-            st.error(f"Falha ao autenticar/Inicializar o Earth Engine: {e}")
-            st.stop()
 
-init_ee()
 
 # =========================
 # Utilitário: remover coordenada Z (3D → 2D)
