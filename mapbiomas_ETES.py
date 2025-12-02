@@ -10,15 +10,16 @@ import plotly.express as px
 import streamlit as st
 
 
-
-
 # Autenticação via Secrets do Streamlit Cloud
-service_account_info = json.loads(os.environ["SERVICE_ACCOUNT_JSON"])
+sa_json_str = st.secrets["env"]["SERVICE_ACCOUNT_JSON"]
+service_account_info = json.loads(sa_json_str)
+
 credentials = ee.ServiceAccountCredentials(
     service_account_info["client_email"],
     key_data=json.dumps(service_account_info)
 )
 ee.Initialize(credentials)
+
 
 
 
