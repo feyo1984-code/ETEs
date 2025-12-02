@@ -10,11 +10,38 @@ import plotly.express as px
 import streamlit as st
 
 
-# Autenticação via chave JSON
-SERVICE_ACCOUNT = 'feyo1984@developer.gserviceaccount.com'
-KEY_PATH = 'ee-feyo1984-0171f94bd405.json'
-credentials = ee.ServiceAccountCredentials(SERVICE_ACCOUNT, KEY_PATH)
+
+import json
+import streamlit as st
+import ee
+
+# Lê as chaves separadas da seção [gee]
+gee = st.secrets["gee"]
+
+# Monta o dict do service account
+service_account_info = {
+    "type": gee["type"],
+    "project_id": gee["project_id"],
+    "private_key_id": gee["private_key_id"],
+    "private_key": gee["private_key"],  # já vem com \n reais
+    "client_email": gee["client_email"],
+    "client_id": gee["client_id"],
+    "auth_uri": gee["auth_uri"],
+    "token_uri": gee["token_uri"],
+    "auth_provider_x509_cert_url": gee["auth_provider_x509_cert_url"],
+    "client_x509_cert_url": gee["client_x509_cert_url"],
+    "universe_domain": gee["universe_domain"],
+}
+
+# Cria credenciais e inicializa EE
+credentials = ee.ServiceAccountCredentials(
+    service_account_info["client_email"],
+    key_data=json.dumps(service_account_info)
+)
 ee.Initialize(credentials)
+        
+
+
 
 
 
