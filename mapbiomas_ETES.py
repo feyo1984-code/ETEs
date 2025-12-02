@@ -9,10 +9,20 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+
+# Autenticação via chave JSON
+SERVICE_ACCOUNT = 'feyo1984@developer.gserviceaccount.com'
+KEY_PATH = 'ee-feyo1984-0171f94bd405.json'
+credentials = ee.ServiceAccountCredentials(SERVICE_ACCOUNT, KEY_PATH)
+ee.Initialize(credentials)
+
+
+
+
 # =========================
 # Nome do arquivo GeoJSON local (ATUALIZADO PARA O CAMINHO ABSOLUTO REVISADO)
 # =========================
-LOCAL_GEOJSON_FILE = Path("E:/GEE-20251124T114825Z-1-001/GEE/app_mapbiomas/Futuras_buffer_500_v2.geojson")
+LOCAL_GEOJSON_FILE = Path("Futuras_buffer_500_v2.geojson")
 
 # =========================
 # Mapeamento de Classes e Cores MapBiomas (Coleção 10)
@@ -51,10 +61,10 @@ MAPBIOMAS_CLASSES = {
 # Configuração da página
 # =========================
 st.set_page_config(page_title="MapBiomas – ROI (Coleção 10)", layout="wide")
-st.title("Coleção MapBiomas 10 – Análise de Região de Interesse (ROI)")
+st.title("Coleção MapBiomas 10 – Análise de Região de Interesse (ROI) - Lista de 33 ETEs")
 
 st.markdown("""
-Este app permite **visualizar e analisar** a classificação do MapBiomas (Coleção 10) para um **ano** e uma **ROI (GeoJSON)** fornecida pelo usuário.
+Este app permite **visualizar e analisar** a classificação do MapBiomas para um **ano** e a **ROI (GeoJSON)** das ETEs.
 
 **Como usar:**
 1. Selecione o **ano** no menu lateral.
